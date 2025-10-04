@@ -5,6 +5,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Zap, Home, Clock, Award, Settings } from 'lucide-react'
+import { NavbarFaucetButton } from './NavbarFaucetButton'
 
 export function Navbar() {
   return (
@@ -59,6 +60,7 @@ export function Navbar() {
 
           {/* Wallet Connect */}
           <div className="flex items-center space-x-4">
+            <NavbarFaucetButton />
             <ConnectButton 
               accountStatus="address"
               chainStatus="icon"

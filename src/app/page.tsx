@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Zap, ArrowRight, Play, Trophy, Users, TrendingUp } from 'lucide-react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { FaucetButton } from '@/components/FaucetButton'
 
 // Dynamically import LiquidEther to avoid SSR issues
 const LiquidEther = dynamic(() => import('@/components/LiquidEtherBackground'), {
@@ -154,6 +155,16 @@ export default function HomePage() {
                   Create Contest
                 </Link>
               </Button>
+            </motion.div>
+
+            {/* Faucet Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="mt-6 sm:mt-8"
+            >
+              <FaucetButton />
             </motion.div>
 
             {/* Quick Contests Preview */}

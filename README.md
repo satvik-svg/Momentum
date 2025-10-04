@@ -1,217 +1,257 @@
-# Momentum - Play the Crowd
+# Momentum
 
-A decentralized social staking protocol built on Hella testnet. Predict outcomes, stake your conviction, and win together.
+A decentralized social prediction protocol built on HeLa blockchain that enables users to create prediction contests, stake cryptocurrency on outcomes, and earn rewards based on collective intelligence.
 
-## 🚀 Features
+## Overview
 
-- **Social Consensus**: Predict crowd behavior, not just facts
-- **Hidden Stakes**: Fair competition with stakes revealed only after contests end
-- **Instant Settlement**: Winners automatically share the losing side's pot
-- **Wallet Integration**: Seamless connection with RainbowKit and wagmi
-- **Modern UI**: Built with Next.js, Tailwind CSS, and Framer Motion
+Momentum transforms traditional prediction markets by combining social engagement with blockchain transparency. The platform allows users to create contests on any topic, stake USDC tokens on their preferred outcomes, and automatically distributes rewards to winners through smart contracts.
 
-## 🛠 Tech Stack
+## Key Features
 
-- **Frontend**: Next.js 15, TypeScript, Tailwind CSS
-- **Animations**: Framer Motion
-- **Wallet**: wagmi, RainbowKit, viem
-- **UI Components**: Radix UI, Lucide icons
-- **Network**: Hella testnet
+- **Decentralized Contest Creation**: Users can create prediction contests on any topic with customizable parameters
+- **Stake-Based Voting**: Participants stake USDC tokens on their predicted outcomes
+- **Automated Settlement**: Smart contracts handle reward distribution based on staking patterns
+- **Transparent Results**: All transactions and outcomes are recorded immutably on HeLa blockchain
+- **Social Interface**: Community-driven platform with real-time engagement
 
-## 🎯 How It Works
+## Technical Architecture
 
-1. **Stake**: Choose your side and stake USDC on the outcome
-2. **Wait**: Stakes are hidden until the contest ends to keep things fair
-3. **Win**: The side with more stake wins, and winners share the losing side's pot
+### Frontend Stack
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS with responsive design
+- **Web3 Integration**: Wagmi v2, RainbowKit, Viem
+- **UI Components**: Custom components with Radix UI primitives
+- **State Management**: React hooks with blockchain state synchronization
 
-## 📁 Project Structure
+### Smart Contracts
+- **Network**: HeLa Testnet (Chain ID: 666888)
+- **Language**: Solidity 0.8.20
+- **Development**: Foundry framework
+- **Testing**: Comprehensive test suite with Forge
+
+### Deployed Contracts
+- **MockUSDC**: `0xa6559C3496c50fd09Cffbc36946E3278A909B18e`
+- **ContestFactory**: `0x4452262C3c480F0B759f119489354c4D1ae5f8d8`
+
+## Project Structure
 
 ```
-src/
-├── app/
-│   ├── admin/                 # Contest creation page
-│   ├── contest/[address]/     # Individual contest pages
-│   ├── layout.tsx             # Root layout with providers
-│   └── page.tsx               # Homepage
-├── components/
-│   ├── ui/                    # Base UI components
-│   ├── ContestCard.tsx        # Contest display card
-│   ├── CountdownTimer.tsx     # Real-time countdown
-│   ├── Footer.tsx             # Site footer
-│   ├── Navbar.tsx             # Navigation bar
-│   ├── providers.tsx          # Wallet and query providers
-│   └── StakeModal.tsx         # Staking interface
-└── lib/
-    ├── mockData.ts            # Demo contest data
-    ├── utils.ts               # Utility functions
-    └── wagmi.ts               # Wallet configuration
+├── src/
+│   ├── app/                   # Next.js app router
+│   │   ├── admin/            # Contest management interface
+│   │   ├── contest/[address]/ # Individual contest pages
+│   │   └── contests/         # Contest listing
+│   ├── components/           # React components
+│   │   ├── ui/              # Base UI components
+│   │   └── *.tsx            # Feature-specific components
+│   └── lib/                 # Utility functions and configurations
+├── contracts/               # Smart contract development
+│   ├── src/                # Solidity contracts
+│   ├── script/             # Deployment scripts
+│   ├── test/               # Contract tests
+│   └── abis/               # Generated ABIs and addresses
+└── public/                 # Static assets
 ```
 
-## 🚦 Getting Started
+## Installation and Setup
 
-1. **Install dependencies:**
+### Prerequisites
+- Node.js 18+ and npm
+- MetaMask or compatible Web3 wallet
+- HeLa testnet HLUSD tokens for transactions
+
+### Frontend Development
+1. **Clone and install dependencies:**
    ```bash
+   git clone https://github.com/satvik-svg/Momentum.git
+   cd Momentum
    npm install
    ```
 
-2. **Run the development server:**
+2. **Configure environment variables:**
+   ```bash
+   cp .env.local.example .env.local
+   # Update with your contract addresses and configuration
+   ```
+
+3. **Start development server:**
    ```bash
    npm run dev
    ```
 
-3. **Open your browser:**
+4. **Access the application:**
    Navigate to [http://localhost:3000](http://localhost:3000)
 
-4. **Connect your wallet:**
-   - Use MetaMask or any wallet supported by RainbowKit
-   - Switch to Hella testnet network
-   - Get test USDC from a faucet
+### Smart Contract Development
+1. **Navigate to contracts directory:**
+   ```bash
+   cd contracts
+   ```
 
-## 🌟 Key Pages
+2. **Install Foundry dependencies:**
+   ```bash
+   forge install
+   ```
 
-### Homepage (`/`)
-- Hero section with animated branding
-- Live contests with hidden stakes
-- Contest history with revealed results
-- Real-time stats and community metrics
+3. **Compile contracts:**
+   ```bash
+   forge build
+   ```
 
-### Contest Detail (`/contest/[address]`)
-- Full contest view with question and options
-- Staking interface with approval flow
-- Real-time countdown timer
-- Results and claiming interface
-- Discussion sidebar (placeholder)
+4. **Run tests:**
+   ```bash
+   forge test
+   ```
 
-### Admin Panel (`/admin`)
-- Contest creation form
-- Platform statistics
-- Community guidelines
-- Contest deployment to blockchain
+5. **Deploy to HeLa testnet:**
+   ```bash
+   forge script script/Deploy.s.sol --rpc-url $HELLA_RPC_URL --broadcast
+   ```
 
-## 🎨 Design Features
+## Network Configuration
 
-- **Dark/Light Mode**: Automatic theme switching
-- **Responsive Design**: Mobile-first approach
-- **Smooth Animations**: Framer Motion for delightful interactions
-- **Gradient Accents**: Modern violet/purple color scheme
-- **Loading States**: Comprehensive feedback during transactions
+### HeLa Testnet Setup
+Add HeLa testnet to your wallet with these parameters:
+- **Network Name**: HeLa Testnet
+- **RPC URL**: https://testnet-rpc.helachain.com
+- **Chain ID**: 666888
+- **Currency Symbol**: HLUSD
+- **Block Explorer**: https://testnet-blockexplorer.helachain.com
 
-## 🔗 Wallet Configuration
+## Application Features
 
-The app is configured for Hella testnet with these settings:
+### Core Functionality
+- **Contest Creation**: Admin interface for deploying new prediction contests
+- **Staking Interface**: Users can stake USDC tokens on preferred outcomes
+- **Real-time Updates**: Live contest status and countdown timers
+- **Reward Distribution**: Automated payout system for winners
+- **Transaction History**: Complete audit trail of all activities
 
-- **Network**: Hella testnet (Chain ID: 666888)
-- **RPC**: Automatic through wagmi
-- **Mock USDC**: `0x036CbD53842c5426634e7929541eC2318f3dCF7e`
+### User Interface
+- **Responsive Design**: Optimized for desktop and mobile devices
+- **Web3 Integration**: Seamless wallet connection and transaction handling
+- **Modern UI**: Clean, professional interface with intuitive navigation
+- **Loading States**: Comprehensive feedback during blockchain interactions
 
-## 📊 Contest Mechanics
+## Smart Contract Architecture
 
-### Staking Phase
-- Users can stake USDC on either option
-- Stakes are hidden from public view
-- Minimum stake: $1.00 USDC
-- Approval required before staking
+### ContestFactory Contract
+- Manages contest creation and administration
+- Handles admin permissions and contest validation
+- Tracks all deployed contests
 
-### Resolution Phase
-- Contest automatically resolves when time expires
-- Winning side determined by total staked amount
-- No external oracles needed - pure social consensus
+### Contest Contract
+- Individual contest logic and state management
+- Handles staking, resolution, and reward distribution
+- Implements secure escrow mechanism
 
-### Claiming Phase
-- Winners can claim their original stake + share of losing pot
-- Proportional distribution based on stake size
-- Immediate settlement, no waiting periods
+### MockUSDC Contract
+- ERC-20 token for testing and demonstration
+- Faucet functionality for obtaining test tokens
+- Standard token interface for staking operations
 
-## 🎮 Demo Features
+## Security Features
 
-The current version includes:
+- **Smart Contract Audited Logic**: Secure handling of funds and contest resolution
+- **User Confirmation Required**: All transactions require explicit user approval
+- **Transparent Operations**: All activities recorded on blockchain
+- **No Admin Backdoors**: Contest outcomes determined by community staking
 
-- **5 Mock Contests**: Mix of live and resolved contests
-- **Realistic Data**: Believable stakes and user counts
-- **Working UI**: Full staking flow with loading states
-- **Confetti**: Celebration animations for winners
-- **Responsive Design**: Works on all device sizes
+## Development Workflow
 
-## 🔮 Future Enhancements
+### Testing
+```bash
+# Frontend tests
+npm test
 
-### Smart Contracts
-- Contest factory for creating new contests
-- Individual contest contracts with escrow
-- Automatic resolution based on stake totals
-- Gas-optimized claiming mechanisms
+# Smart contract tests
+cd contracts && forge test
 
-### Social Features
-- Real-time chat for each contest
-- User profiles and reputation
-- Social sharing and referrals
-- Leaderboards and achievements
+# Integration tests
+npm run test:integration
+```
 
-### Advanced Features
-- Multi-option contests (not just binary)
-- Time-weighted staking (early bird bonuses)
-- Contest categories and filtering
-- Mobile app with push notifications
+### Deployment
+```bash
+# Frontend deployment
+npm run build
+npm run start
 
-## 🛡 Security Considerations
+# Smart contract deployment
+cd contracts && forge script script/Deploy.s.sol --broadcast
+```
 
-- All transactions require user confirmation
-- Stakes are locked until contest resolution
-- No admin controls over contest outcomes
-- Transparent on-chain resolution
+## API Integration
 
-## 📱 Mobile Experience
+The application integrates with:
+- **HeLa Blockchain**: Direct smart contract interaction
+- **IPFS**: Decentralized storage for contest metadata
+- **Web3 Wallets**: MetaMask and other compatible wallets
+## Use Cases
 
-The app is fully responsive with:
-- Touch-optimized interfaces
-- Mobile-friendly modals
-- Gesture-based navigation
-- Progressive web app capabilities
+### Prediction Markets
+- **Technology**: Software release dates, adoption metrics, performance benchmarks
+- **Finance**: Market movements, economic indicators, cryptocurrency trends
+- **Politics**: Election outcomes, policy decisions, approval ratings
+- **Entertainment**: Award show winners, box office performance, streaming metrics
+- **Sports**: Game outcomes, season performance, player statistics
 
-## 🎯 Target Audience
+### Business Applications
+- **Market Research**: Consumer preference prediction and trend analysis
+- **Risk Assessment**: Crowdsourced probability estimation for business decisions
+- **Product Launch**: Community sentiment analysis and success prediction
+- **Investment Decisions**: Collective intelligence for portfolio management
 
-- **Crypto Enthusiasts**: Love on-chain games and DeFi
-- **Prediction Market Users**: Familiar with Polymarket, Augur
-- **Social Gamers**: Enjoy competitive prediction games
-- **DeFi Users**: Want yield opportunities beyond liquidity provision
+## Contributing
 
-## 💡 Contest Ideas
+### Development Guidelines
+1. Fork the repository and create a feature branch
+2. Follow TypeScript and Solidity best practices
+3. Include comprehensive tests for new features
+4. Update documentation for any API changes
+5. Submit pull request with detailed description
 
-Great contests for Momentum:
+### Code Standards
+- **Frontend**: ESLint configuration with TypeScript strict mode
+- **Smart Contracts**: Solidity style guide compliance
+- **Testing**: Minimum 80% code coverage requirement
+- **Documentation**: Inline comments and README updates
 
-**Tech & Crypto:**
-- "Will Ethereum 2.0 ship before Q2 2024?"
-- "Will ChatGPT-5 be released this year?"
-- "Will Base become the #2 Ethereum L2?"
+## Roadmap
 
-**Pop Culture:**
-- "Will the next Marvel movie score >85% on Rotten Tomatoes?"
-- "Will Taylor Swift announce tour dates for 2024?"
+### Phase 1: Core Platform (Current)
+- Basic contest creation and staking functionality
+- HeLa testnet deployment and testing
+- User interface and Web3 integration
 
-**Business & Economy:**
-- "Will Tesla stock hit $300 before year-end?"
-- "Will any AI company IPO for >$50B valuation?"
+### Phase 2: Enhanced Features
+- Multi-option contests beyond binary choices
+- Advanced reward mechanisms and incentive structures
+- Mobile application development
 
-## 🤝 Contributing
+### Phase 3: Scaling and Optimization
+- Mainnet deployment with security audits
+- Cross-chain compatibility and bridge integration
+- Advanced analytics and reporting features
 
-This is a hackathon project showcasing the potential of social consensus mechanisms. Future development will focus on:
+## Support and Documentation
 
-1. Smart contract deployment
-2. Real user testing
-3. Community building
-4. Mobile optimization
+### Getting Help
+- **Technical Issues**: Create GitHub issues with detailed reproduction steps
+- **General Questions**: Join community discussions and forums
+- **Security Concerns**: Report via responsible disclosure process
 
-## 📄 License
+### Additional Resources
+- **Smart Contract Documentation**: Detailed API reference and examples
+- **Frontend Component Library**: Reusable UI components and patterns
+- **Development Tutorials**: Step-by-step guides for common tasks
 
-Built for demonstration purposes. The concept of social staking and crowd prediction is open for the community to build upon.
+## License
 
-## 🚀 Deployment
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-Ready to deploy on:
-- **Vercel**: Automatic deployments from Git
-- **Netlify**: Static site hosting
-- **Hella testnet**: Testnet smart contracts
-- **Base Mainnet**: Production ready (future)
+## Acknowledgments
 
----
+Built with modern Web3 technologies and deployed on HeLa blockchain infrastructure. The project demonstrates the potential of decentralized prediction markets and community-driven consensus mechanisms.
 
-**Built with ❤️ for the future of social consensus**
+For more information, visit the project repository or contact the development team.
