@@ -16,7 +16,7 @@ export const HELLA_RPC_URL = "https://testnet-rpc.helachain.com";
 export const CONTEST_DURATION = 86400; // 24 hours
 export const MINIMUM_STAKE = 1000000; // $1 in USDC (6 decimals)
 export const PLATFORM_FEE_PERCENT = 2; // 2% platform fee
-export const FAUCET_AMOUNT = 10000000000; // 10,000 USDC (6 decimals)
+export const FAUCET_AMOUNT = 100000000; // 100 USDC (6 decimals)
 
 // MockUSDC ABI - Essential functions for frontend (JSON format for Wagmi v2)
 export const MOCK_USDC_ABI = [

@@ -56,12 +56,12 @@ export function FaucetButton() {
         ) : isSuccess || justClaimed ? (
           <>
             <CheckCircle className="h-4 w-4 mr-2" />
-            10,000 mUSDC Claimed!
+            100 mUSDC Claimed!
           </>
         ) : (
           <>
             <Droplets className="h-4 w-4 mr-2" />
-            Get 10,000 mUSDC (Free)
+            Get 100 mUSDC (Free)
           </>
         )}
       </Button>

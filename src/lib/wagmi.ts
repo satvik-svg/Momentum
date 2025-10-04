@@ -33,14 +33,24 @@ const hellaTestnet = defineChain({
 
 // Environment variables with fallbacks
 const hellaRpcUrl = process.env.NEXT_PUBLIC_HELLA_RPC_URL || 'https://testnet-rpc.helachain.com'
-const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID || 'YOUR_WALLETCONNECT_PROJECT_ID'
+const walletConnectProjectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID
 
-export const config = getDefaultConfig({
-  appName: 'Momentum',
-  projectId: walletConnectProjectId,
-  chains: [hellaTestnet],
-  ssr: true, // If your dApp uses server side rendering (SSR)
-})
+// Use basic config if no WalletConnect project ID is provided
+export const config = walletConnectProjectId && walletConnectProjectId !== 'YOUR_WALLETCONNECT_PROJECT_ID' 
+  ? getDefaultConfig({
+      appName: 'Momentum',
+      projectId: walletConnectProjectId,
+      chains: [hellaTestnet],
+      ssr: true,
+    })
+  : createConfig({
+      chains: [hellaTestnet],
+      transports: {
+        [hellaTestnet.id]: http(hellaRpcUrl, {
+          pollingInterval: 4_000, // Poll every 4 seconds
+        }),
+      },
+    })
 
 // Alternative config using createConfig for more control
 export const wagmiConfig = createConfig({

@@ -98,7 +98,7 @@ export function TokenSetup() {
             Step 2: Get Test Tokens
           </h4>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Get 10,000 mUSDC tokens for testing. You can do this multiple times.
+            Get 100 mUSDC tokens for testing. You can do this multiple times.
           </p>
           <Button
             onClick={handleFaucet}
@@ -116,7 +116,7 @@ export function TokenSetup() {
                 Tokens Received!
               </>
             ) : (
-              'Get 10,000 mUSDC'
+              'Get 100 mUSDC'
             )}
           </Button>
         </div>
